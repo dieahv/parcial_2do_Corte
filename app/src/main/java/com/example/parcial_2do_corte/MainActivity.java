@@ -2,6 +2,7 @@ package com.example.parcial_2do_corte;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,20 @@ public class MainActivity extends AppCompatActivity {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(validacion()){
+                    int cant_reloj = Integer.parseInt(canProd_1.getText().toString());
+                    int cant_tv = Integer.parseInt(canProd_2.getText().toString());
+                    int cant_cel = Integer.parseInt(canProd_3.getText().toString());
 
+                    Producto prod = new Producto(cant_reloj,cant_tv,cant_cel);
+
+                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("producto", prod);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
